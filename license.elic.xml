@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<License xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Key="cNY4LA4awojvAQAc3lE9K05POKItvvpuz9UuEPmAHJJnlKXCgctCnBleTPUTfIG5FJzTzqA/YSOUC32vtcOLU/ActYKge1TrlTO/xqWPfNBAdlkVpM/zsYX2C1srea7KYSSUbGWDNqS8cezA5c/PcaLx98W60IJ4o8xS7zBWyByjEAM9YLx4bxz19gd38APu2AndnSUeRSUCJQsMtnj+o1HFbavchlu7ti1Lifzpwef9mUBcAXi8VCbfaCN9IML9DC6rDKCmCtBxTF4ey6IAbVU/r174hv5Stc1+GRLPxrZXnGG+L6vw4EnKIJddeZyuHuudHDCRRIg72PkdcnnfB47cCXSygzofvRLCtrmaXQgdsIM0Z0dh76E1+NCGwbSWEma4KAtgA1D4e1E5u1BB0nLDhANGGCLLmbRtaFNe8lZifdlfFPI/SBrSgYPhr4Vql2Km7HodfIzQWkduAMMRBQwsmDN4Qz+oNfvVJUATKl59h/LposnY6WFVuFJtFKDTT5Acwe1XgsmIpfAx0N96C3fmAqkxb6Gcz0q1mtfkjo4ECAVshPkxVaZKRzg333UZJggaeSJ+cjzMZXJ4x+KpbEKc/GiNH8esxYKG8b1IWvszJLSOgMrW8NtPpA+xc1+Hjh0ODV8OfAJNw31aqMmsUmD2FkZQHxppCOoUdtMcsAm4Lo0J1V11kD9Szd7x/4dLtZDo2MQVgGZGi+5IY7Ve9R8YK8Km17MDyc6HHx0R0VXV7GIu56UTb7Z8znfxiAlKWUn/r4I+NvlVYR+W0HAtKfdAUJUQ7/kOxHulWm4Ke+ZHM5vWkAR6ERXw2kirjMVDScxb0w2SpHJK+JPKsxkug0s+CYmsMqlTsKG1RuEyl3VPnF4TiYEjkx0goL5M7IuHYwTw2PL3Kvu4X3qGgCHdb/MDRyBXUO8UGzhiTZ3mMMwAfYisBZ0jgj58Yr7sGKFy1e9o+d1CuG0vDMDMMXuv4apdKHVJF4BviVJDEPNpgAUQK6BZ0waexZVw5O4XTsBo51fcsKDaPyMSnY5iGJz/3Cge2krQ2mz59ZYzh+cNbx/graOilPdFIUE2tmdT/EMZpHgFQpRfnaJ9W0UGO/nR+7pfYnFDDB2ZGZk4B+HtjyAk9J7vQbCEQ/bVcGuCbxjdDhGgfS7U70VSyP5b5X7aZkeIU/r8cJLLfK6QWrDXYjeIBSoQto0S6AF+CATglztCPQ1PsYaXHR2Ab74ANUWHhaX9U0US59cf/7zWJV1PzCycW90r0l09KxU3adpO7RbPIvmpUtVO25dc8Vdwdh3cKASbanMXHTBttAR85PLKP9RHPEIN/+FvwPIo3QLDGNLh3s9OOoZvAT6UPNuDzUWadFnv+/pxb02fKCxUNycYez2/n4lTT8c4sbUJT81UrRG2uCHqMXdMyzTikV8eztSKA9yyyYnfZlEcIqbPPY0aBrmHuEHH6STGd3qNA/u6Rs9sCfIOcb3seGh6ywXWn1WYl86kXr3boGX+0g18gPgSxfg=" Version="1.3">
+	<Type>Runtime</Type>
+	<Username>Praveen Tyagi</Username>
+	<Email>praveen@evelynlearning.com</Email>
+	<Organization>Evelyn Learning Systems Pvt Ltd</Organization>
+	<LicensedDate>2020-08-06T00:00:00Z</LicensedDate>
+	<ExpiredDate>2021-09-06T00:00:00Z</ExpiredDate>
+	<Products>
+		<Product>
+			<Name>Spire.Doc Pro Edition</Name>
+			<Version>8.7</Version>
+			<Subscription>
+				<NumberOfPermittedDeveloper>1</NumberOfPermittedDeveloper>
+				<NumberOfPermittedSite>1</NumberOfPermittedSite>
+			</Subscription>
+		</Product>
+	</Products>
+	<Issuer>
+		<Name>e-iceblue</Name>
+		<Email>sales@e-iceblue.com</Email>
+		<Url>http://www.e-iceblue.com</Url>
+	</Issuer>
+</License>

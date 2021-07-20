@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AutoQuestionExtractor": {
+      "commandName": "Project",
+      "commandLineArgs": "D:\\coretest\\G6-Test-1.docx"
+    }
+  }
+}
