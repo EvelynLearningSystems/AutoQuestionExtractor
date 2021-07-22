@@ -1033,7 +1033,7 @@ namespace PDFCore
             var sImgName = Path.GetFileNameWithoutExtension(LoadFilePath);
             string imagePath = sImgName + "-images/";
             Document doc = new Document();
-            doc.LoadFromFile(LoadFilePath);
+            doc.LoadFromFile(Path.GetDirectoryName(LoadFilePath) + "/" + Path.GetFileNameWithoutExtension(LoadFilePath) + "-phase-0.docx");
             int i = 1;
             foreach (Section sec in doc.Sections)
             {
@@ -1082,7 +1082,7 @@ namespace PDFCore
                 fileCount = fileCount + 1;
 
                 Document doc = new Document();
-                doc.LoadFromFile(LoadFilePath);
+                doc.LoadFromFile(Path.GetDirectoryName(LoadFilePath) + "/" + Path.GetFileNameWithoutExtension(LoadFilePath) + "-phase-0.docx");
                 List<DocPicture> DocPictureList = new List<DocPicture>();
                 List<DocPicture> mathPictureList = new List<DocPicture>();
                 List<DocPicture> image = new List<DocPicture>();
@@ -1132,7 +1132,7 @@ namespace PDFCore
                         // textBox1.AppendText(pic + Environment.NewLine);
                         //imageName = string.Format(sImgName + "_" + DateTime.Now.ToString("HH_mm_ss") + "_image00{0}.png", imageIdx);
 
-                        imageName = string.Format(sImgName + "_image00{0}.png", imageIdx);
+                        imageName = string.Format(sImgName + "-image00{0}.png", imageIdx);
                         pic.Image.Save(imagePath + imageName, System.Drawing.Imaging.ImageFormat.Png);
                         imageIdx += 1;
 
@@ -1211,7 +1211,7 @@ namespace PDFCore
         public void TableToImage()
         {
             Document document = new Document();
-            document.LoadFromFile(@"C:\Users\C K Bhushan\Desktop\NCERT Books\Tools\Issues\Anchored.docx");
+            document.LoadFromFile(LoadFilePath);
 
             foreach (Section section in document.Sections)
             {
@@ -1239,7 +1239,7 @@ namespace PDFCore
                 }
             }
            // LoadFilePath = @"C:\Users\C K Bhushan\Desktop\NCERT Books\Tools\Issues\tableout.docx";
-            document.SaveToFile(@"C:\Users\C K Bhushan\Desktop\NCERT Books\Tools\Issues\tableout.docx");
+            document.SaveToFile(Path.GetDirectoryName(LoadFilePath) + "/" + Path.GetFileNameWithoutExtension(LoadFilePath) + "-phase-0.docx", FileFormat.Docx);
         }
 
 
