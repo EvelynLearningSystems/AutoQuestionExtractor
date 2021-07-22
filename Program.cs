@@ -65,30 +65,37 @@ namespace PDFCore
             //obj.disp();
             Console.WriteLine("Analyzing files...");
 
+            Console.WriteLine("Converting tables to image... ");
+            obj.TableToImage();
+            Console.Write("Done");
+
+            Console.WriteLine("Extracting Images... ");
             obj.extractImages();
+            Console.Write("Done");
 
-            Console.WriteLine("Image extraction done");
-
+            Console.WriteLine("Inserting image tags...");
             obj.imageTags();
-
-            Console.WriteLine("Image tags insertion done");
-
-            obj.readContents();
+            Console.Write("Done");
 
             Console.WriteLine("Reading docx contents");
-
-            obj.LoadContent();
+            obj.readContents();
+            Console.Write("Done");
+            
 
             Console.WriteLine("Extracting questions");
-
-            obj.CleanContent();
+            obj.LoadContent();
+            Console.Write("Done");
+            
 
             Console.WriteLine("Cleaning questions");
-
-            obj.TableOutput();
+            obj.CleanContent();
+            Console.Write("Done");
+            
 
             Console.WriteLine("Creating ECAT output");
-
+            obj.TableOutput();
+            Console.Write("Done");
+            
             Console.WriteLine("Done");
             //obj.CreateDoc();
 
@@ -516,393 +523,6 @@ namespace PDFCore
             }
 
 
-
-            //for (int i = 0; i < contentBox.Lines.Count() - 1; i++)
-            //{
-            //    currentLine = contentBox.Lines[i].ToString();
-
-            //    if(currentLine.Trim().Length <1)
-            //    {
-            //        continue;
-            //    }
-
-            //    string first1 = currentLine.Split('.').First();
-
-            //    if (first1.All(char.IsDigit))
-            //    {
-            //        try
-            //        {
-            //            questionNumber = Convert.ToInt32(first1);
-            //        }
-            //        catch (Exception ex)
-            //        {
-
-            //           // Console.WriteLine(ex.Message);
-            //        }
-
-            //    }
-
-            //    if(currentLine.StartsWith("[") && currentLine.Contains("UNIT"))
-            //    {
-            //        skey = currentLine.Replace("[", "").Replace("]", "");
-            //        if (answers.ContainsKey(skey))
-            //        {
-            //            correctAnswer = answers[skey];
-            //        }
-            //        continue;
-            //    }
-
-            //    if (currentLine.Contains("[MCQ]"))
-            //    {
-            //        questionType = "MCQ";
-            //        if (Int32.TryParse(currentLine.Split('-')[1], out int numValue))
-            //        {
-            //            lower = numValue;
-            //        }
-            //        if (Int32.TryParse(currentLine.Split('-')[2], out int numValue2))
-            //        {
-            //            upper = numValue2;
-            //        }
-            //        continue;
-
-            //    }
-            //    else if (currentLine.Contains("[TF]"))
-            //    {
-            //        questionType = "TF";
-            //        if (Int32.TryParse(currentLine.Split('-')[1], out int numValue))
-            //        {
-            //            lower = numValue;
-            //        }
-            //        if (Int32.TryParse(currentLine.Split('-')[2], out int numValue2))
-            //        {
-            //            upper = numValue2;
-            //        }
-            //        continue;
-            //    }
-            //    else if (currentLine.Contains("[FIB]"))
-            //    {
-            //        questionType = "FIB";
-
-            //        if (Int32.TryParse(currentLine.Split('-')[1], out int numValue))
-            //        {
-            //            lower = numValue;
-            //        }
-            //        if (Int32.TryParse(currentLine.Split('-')[2], out int numValue2))
-            //        {
-            //            upper = numValue2;
-            //        }
-            //        continue;
-            //    }
-
-
-            //    if(questionNumber >= lower && questionNumber <= upper)
-            //    {
-            //        currQuestionType = questionType;
-            //    }
-            //    else
-            //    {
-            //        currQuestionType = "WORD";
-            //    }
-
-            //    //string first = currentLine.Split('.').First();
-            //    //if(first.All(char.IsDigit))
-            //    //{
-            //    //    questionStatus = true;
-            //    //    continue;
-            //    //}
-            //    if (currentLine.Contains("<question>"))
-            //    {
-            //        questionStatus = true;
-            //        tokenstatus = true;
-            //        continue;
-            //    }
-
-            //    if (questionStatus == true)
-            //    {
-            //        section.AddParagraph();
-            //        Table table = section.AddTable(true);
-
-            //        // table.ResetCells(2, 2);
-            //        rowCount = 1;
-            //        table.ResetCells(11, 2);
-            //        table.Rows[2].Cells[1].SplitCell(2, 1);
-            //        table[1, 0].AddParagraph().AppendText("Question Type");
-            //        table[1, 1].AddParagraph().AppendText(currQuestionType);
-            //        table[2, 0].AddParagraph().AppendText("Marks");
-            //        table[2, 1].AddParagraph().AppendText(marksIfTrue);
-            //        table[2, 2].AddParagraph().AppendText(marksIfFalse);
-            //        table[3, 0].AddParagraph().AppendText("isMandatory");
-            //        table[3, 1].AddParagraph().AppendText(isMandatory);
-            //        table[4, 0].AddParagraph().AppendText("isHidden");
-            //        table[4, 1].AddParagraph().AppendText(isHidden);
-            //        table[5, 0].AddParagraph().AppendText("correctAnswer");
-            //        table[5, 1].AddParagraph().AppendText(correctAnswer);
-            //        table[6, 0].AddParagraph().AppendText("globalExplanation");
-            //        table[6, 1].AddParagraph().AppendText(globalExplanation);
-            //        table[7, 0].AddParagraph().AppendText("createdBy");
-            //        table[7, 1].AddParagraph().AppendText(createdBy);
-            //        table[8, 0].AddParagraph().AppendText("subjects");
-            //        table[8, 1].AddParagraph().AppendText(subjects);
-            //        table[9, 0].AddParagraph().AppendText("courses");
-            //        table[9, 1].AddParagraph().AppendText(courses);
-            //        table[10, 0].AddParagraph().AppendText("tags");
-            //        table[10, 1].AddParagraph().AppendText(tags);
-            //        //table[10, 0].AddParagraph().AppendText();
-            //        //table[10, 1].AddParagraph().AppendText();
-
-            //        //table.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-
-            //        questionStatus = false;
-            //        tableCount += 1;
-            //    }
-
-            //    if (tableCount >= 0)
-            //    {
-            //        Table ctable = document.Sections[0].Tables[tableCount] as Spire.Doc.Table;
-            //        ctable.ApplyHorizontalMerge(0, 0, 1);
-            //        //ctable.Rows[6].Cells[1].SplitCell(2, 1);
-            //        ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-
-            //        if(currQuestionType == "MCQ")
-            //        {
-            //            if (currentLine.StartsWith("(a)") || currentLine.StartsWith("(A)"))// && (questionType !="SA" || questionType != "LA" || questionType != "FILEUPLOAD" || questionType != "FILEUPLOAD-D"))
-            //            {
-            //                currentLine = currentLine.Replace("(a)", "").Trim();
-            //                currentLine = currentLine.Replace("(A)", "").Trim();
-            //                TableRow row = ctable.AddRow();
-            //                rowCount += 1;
-            //                ctable.Rows.Insert(rowCount, row);
-            //                ctable.Rows[rowCount].Cells[1].SplitCell(2,1);
-            //                ctable.Rows[rowCount].Cells[2].SplitCell(2, 1);
-            //                ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-            //                ctable[rowCount, 0].AddParagraph().AppendText(currentLine);
-
-            //                if(correctAnswer.Trim() == "(A)")
-            //                {
-            //                    ctable[rowCount, 1].AddParagraph().AppendText("TRUE");
-            //                }
-            //                ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-
-
-            //            }
-            //            else if (currentLine.StartsWith("(b)") || currentLine.StartsWith("(B)"))
-            //            {
-            //                currentLine = currentLine.Replace("(b)", "").Trim();
-            //                currentLine = currentLine.Replace("(B)", "").Trim();
-            //                TableRow row = ctable.AddRow();
-            //                rowCount += 1;
-            //                ctable.Rows.Insert(rowCount, row);
-            //                ctable.Rows[rowCount].Cells[1].SplitCell(3, 1);
-            //                ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-            //                ctable[rowCount, 0].AddParagraph().AppendText(currentLine);
-            //                if (correctAnswer.Trim() == "(B)")
-            //                {
-            //                    ctable[rowCount, 1].AddParagraph().AppendText("TRUE");
-            //                }
-            //                ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-
-            //            }
-            //            else if (currentLine.StartsWith("(c)") || currentLine.StartsWith("(C)"))
-            //            {
-            //                currentLine = currentLine.Replace("(c)", "").Trim();
-            //                currentLine = currentLine.Replace("(C)", "").Trim();
-            //                TableRow row = ctable.AddRow();
-            //                rowCount += 1;
-            //                ctable.Rows.Insert(rowCount, row);
-            //                ctable.Rows[rowCount].Cells[1].SplitCell(3, 1);
-            //                ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-            //                ctable[rowCount, 0].AddParagraph().AppendText(currentLine);
-            //                if (correctAnswer.Trim() == "(C)")
-            //                {
-            //                    ctable[rowCount, 1].AddParagraph().AppendText("TRUE");
-            //                }
-            //                ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-
-            //            }
-            //            else if (currentLine.StartsWith("(d)") || currentLine.StartsWith("(D)"))
-            //            {
-            //                currentLine = currentLine.Replace("(d)", "").Trim();
-            //                currentLine = currentLine.Replace("(D)", "").Trim();
-            //                TableRow row = ctable.AddRow();
-            //                rowCount += 1;
-            //                ctable.Rows.Insert(rowCount, row);
-            //                ctable.Rows[rowCount].Cells[1].SplitCell(3, 1);
-            //                ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-            //                ctable[rowCount, 0].AddParagraph().AppendText(currentLine);
-            //                if (correctAnswer.Trim() == "(D)")
-            //                {
-            //                    ctable[rowCount, 1].AddParagraph().AppendText("TRUE");
-            //                }
-            //                ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-
-            //            }
-            //            else if (currentLine.StartsWith("(e)") || currentLine.StartsWith("(E)"))
-            //            {
-            //                currentLine = currentLine.Replace("(e)", "").Trim();
-            //                currentLine = currentLine.Replace("(E)", "").Trim();
-            //                TableRow row = ctable.AddRow();
-            //                rowCount += 1;
-            //                ctable.Rows.Insert(rowCount, row);
-            //                ctable.Rows[rowCount].Cells[1].SplitCell(3, 1);
-            //                ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-            //                ctable[rowCount, 0].AddParagraph().AppendText(currentLine);
-            //                if (correctAnswer.Trim() == "(E)")
-            //                {
-            //                    ctable[rowCount, 1].AddParagraph().AppendText("TRUE");
-            //                }
-            //                ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-
-            //            }
-            //            else if (currentLine.StartsWith("(f)") || currentLine.StartsWith("(F)"))
-            //            {
-            //                currentLine = currentLine.Replace("(f)", "").Trim();
-            //                currentLine = currentLine.Replace("(F)", "").Trim();
-            //                TableRow row = ctable.AddRow();
-
-            //                rowCount += 1;
-            //                ctable.Rows.Insert(rowCount, row);
-            //                ctable.Rows[rowCount].Cells[1].SplitCell(2, 1);
-            //                ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-            //                ctable[rowCount, 0].AddParagraph().AppendText(currentLine);
-            //                if (correctAnswer.Trim() == "(F)")
-            //                {
-            //                    ctable[rowCount, 1].AddParagraph().AppendText("TRUE");
-            //                }
-            //                ctable.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-
-            //            }
-            //            else
-            //            {
-            //                string first = currentLine.Split('.').First();
-            //                if (first.All(char.IsDigit))
-            //                {
-            //                    currentLine = currentLine.Replace(first + ".", "");
-            //                }
-            //                ctable[0, 0].AddParagraph().AppendText(currentLine);
-
-            //            }
-
-
-            //        }
-            //        else if(currQuestionType == "TF")
-            //        {
-            //            TableRow row = ctable.AddRow();
-            //            rowCount += 1;
-            //            ctable.Rows.Insert(rowCount, row);
-            //            ctable[rowCount, 0].AddParagraph().AppendText("True");
-            //            if (correctAnswer == "T")
-            //            {
-            //                ctable[rowCount, 1].AddParagraph().AppendText("TRUE");
-            //            }
-
-            //            TableRow row2 = ctable.AddRow();
-            //            rowCount += 1;
-            //            ctable.Rows.Insert(rowCount, row2);
-            //            ctable[rowCount, 0].AddParagraph().AppendText("False");
-            //            if (correctAnswer == "F")
-            //            {
-            //                ctable[rowCount, 1].AddParagraph().AppendText("TRUE");
-            //            }
-
-            //            string first = currentLine.Split('.').First();
-            //            if (first.All(char.IsDigit))
-            //            {
-            //                currentLine = currentLine.Replace(first + ".", "");
-            //            }
-            //            //currentLine = currentLine.Replace(questionNumber + ".", "").Trim();
-            //            //currentLine = currentLine.Replace(questionNumber, "").Trim().TrimStart('.');
-            //            ctable[0, 0].AddParagraph().AppendText(currentLine);
-
-
-            //        }
-            //        else if(currQuestionType == "FIB")
-            //        {
-            //            string[] tokens;
-
-            //            if(correctAnswer.Contains(";"))
-            //            {
-            //                tokens = correctAnswer.Split(';');
-            //            }
-            //            else if(correctAnswer.Contains("(a)"))
-            //            {
-            //                string answer = correctAnswer.Trim().Replace("(a)", "").Replace("(b)", "-").Replace("(c)", "-").Replace("(d)", "-").Replace("(e)", "-");
-            //                tokens = answer.Split('-');
-            //            }
-            //            else
-            //            {
-            //                if(correctAnswer.Contains(", "))
-            //                {
-            //                    var ans = correctAnswer.Replace(", ", "-");
-            //                    tokens = ans.Split('-');
-            //                }
-            //                else
-            //                {
-            //                    tokens =  new string[] { correctAnswer };
-            //                }
-
-            //            }
-
-            //            if (tokenstatus == true)
-            //            {
-            //                int tok = 1;
-            //                foreach (string item in tokens)
-            //                {
-            //                    TableRow row = ctable.AddRow();
-            //                    rowCount += 1;
-            //                    ctable.Rows.Insert(rowCount, row);
-            //                    ctable[rowCount, 0].AddParagraph().AppendText("token" + tok.ToString());
-            //                    ctable[rowCount, 1].AddParagraph().AppendText(item);
-            //                    tok += 1;
-            //                }
-            //                tokenstatus = false;
-            //            }
-
-            //            string first = currentLine.Split('.').First();
-            //            if (first.All(char.IsDigit))
-            //            {
-            //                currentLine = currentLine.Replace(first + ".", "");
-            //            }
-
-            //            if (currentLine.Trim().Length > 0)
-            //            {
-            //                if (!currentLine.Contains("token"))
-            //                {
-
-            //                    if (currentLine.EndsWith("."))
-            //                    {
-            //                        currentLine = currentLine.TrimEnd('.') + " [token1].";
-            //                    }
-            //                    else
-            //                    {
-            //                        currentLine = currentLine + " [token1].";
-            //                    }
-            //                }
-            //                ctable[0, 0].AddParagraph().AppendText(currentLine);
-            //            }
-
-            //            //currentLine = currentLine.Replace(questionNumber + ".", "").Trim();
-            //            //currentLine = currentLine.Replace(questionNumber, "").Trim().TrimStart('.');
-
-
-            //        }
-            //        else 
-            //        {
-            //            string first = currentLine.Split('.').First();
-            //            if (first.All(char.IsDigit))
-            //            {
-            //                currentLine = currentLine.Replace(first + ".", "");
-            //            }
-            //            //currentLine = currentLine.Replace(questionNumber + ".", "").Trim();
-            //            //currentLine = currentLine.Replace(questionNumber, "").Trim().TrimStart('.');
-            //            ctable[0, 0].AddParagraph().AppendText(currentLine);
-            //        }
-
-            //    }
-
-
-            //}
-
-
             document.SaveToFile(Path.GetDirectoryName(LoadFilePath) + "/" + Path.GetFileNameWithoutExtension(LoadFilePath) + "-final.docx", FileFormat.Docx);
             document.Close();
 
@@ -998,11 +618,7 @@ namespace PDFCore
                             tokenCount += 1;
                         }
 
-                        //string first = currentLine.Split('.').First();
-                        //if(first.All(char.IsDigit))
-                        //{
-                        //    textBox1.AppendText(first + Environment.NewLine);
-                        //}
+
                         string first = currentLine.Split('.').First();
                         if (first.All(char.IsDigit))
                         {
@@ -1019,108 +635,11 @@ namespace PDFCore
                             Wr.Write(s + Environment.NewLine);
                         }
 
-
-
-
-
-
                     }
                     objReader.Dispose();
                 }
 
             }
-
-
-            //for (int i = 0; i < headingsBox.Lines.Count() - 1; i++)
-            //{
-            //    currentLine = headingsBox.Lines[i].ToString();
-
-            //    //if (unitstatus == true)
-            //    //{
-            //    //    contentBox.AppendText(Environment.NewLine + "[UNIT" + "-" + currUnit.ToString() + "]" + Environment.NewLine);
-            //    //}
-
-            //    currentQuestionNo = currentLine.Split('.')[0];
-            //    if (currentQuestionNo.Trim().All(char.IsDigit))
-            //    {
-            //        try
-            //        {
-            //            currentQN = Convert.ToInt32(currentQuestionNo);
-
-            //            if (currentQN > 400 || currentQN < 1)
-            //            {
-            //                continue;
-            //            }
-
-            //            if (currentQN >= qn)
-            //            {
-            //                qn = currentQN;
-            //               // unitstatus = false;
-            //            }
-            //            else
-            //            {
-            //                qn = currentQN;
-            //                currUnit += 1;
-            //               // unitstatus = true;
-
-
-            //            }
-
-            //        }
-            //        catch (Exception)
-            //        {
-
-            //            continue;
-            //        }
-
-
-
-            //        contentBox.AppendText(Environment.NewLine + "[UNIT" + "-" + currUnit.ToString() + "-" + currentQN + "]" + Environment.NewLine);
-            //        tokenCount = 1;
-            //    }
-
-            //    string pattern = @"[_]{2,}";
-            //    Regex regex = new Regex(pattern);
-            //    foreach (Match ItemMatch in regex.Matches(currentLine))
-            //    {
-            //        currentLine = currentLine.Replace(ItemMatch.Value, "_" );
-
-            //    }
-
-
-            //    int freq = currentLine.Count(f => (f == '_'));
-
-            //    for(int fi =1; fi <= freq; fi++)
-            //    {
-            //        string repStr = " [token" + tokenCount.ToString() + "] ";
-            //        var regex_replace = new Regex(Regex.Escape("_"));
-
-            //        currentLine = regex_replace.Replace(currentLine, repStr, 1);
-            //        tokenCount += 1;
-            //    }
-
-            //    //string first = currentLine.Split('.').First();
-            //    //if(first.All(char.IsDigit))
-            //    //{
-            //    //    textBox1.AppendText(first + Environment.NewLine);
-            //    //}
-            //    string first = currentLine.Split('.').First();
-            //    if (first.All(char.IsDigit))
-            //    {
-            //        currentLine = "<question>\\n" + currentLine;
-            //    }
-
-            //    currentLine = currentLine.Replace("(a)", "\\n(a)").Replace("(b)", "\\n(b)").Replace("(c)", "\\n(c)").Replace("(d)", "\\n(d)").Replace("(e)", "\\n(e)").Replace("(f)", "\\n(f)");
-            //    currentLine = currentLine.Replace("(A)", "\\n(A)").Replace("(B)", "\\n(B)").Replace("(C)", "\\n(C)").Replace("(D)", "\\n(D)").Replace("(E)", "\\n(E)").Replace("(F)", "\\n(F)");
-
-            //    var result = currentLine.Split(new string[] { "\\n" }, StringSplitOptions.None);
-            //    foreach (string s in result)
-            //    {
-            //        contentBox.AppendText(s + Environment.NewLine);
-            //    }
-
-            //}
-
 
         }
 
@@ -1689,26 +1208,188 @@ namespace PDFCore
             HeadingsCounter = counter;
         }
 
-        public void CreateDoc()
+        public void TableToImage()
         {
-            //Create a document object
-            Document doc = new Document();
+            Document document = new Document();
+            document.LoadFromFile(@"C:\Users\C K Bhushan\Desktop\NCERT Books\Tools\Issues\Anchored.docx");
 
-            //Add a section
+            foreach (Section section in document.Sections)
+            {
+                for (int i = 0; i < section.Body.Tables.Count; i++)
+                {
+                    Paragraph para = new Paragraph(document);
+                    Table table = section.Body.Tables[i] as Table;
+
+                    int index = section.Body.ChildObjects.IndexOf(table);
+
+                    //contentBox.AppendText(table.TableFormat.Borders.NoBorder.ToString() + Environment.NewLine);
+                    //contentBox.AppendText(table.TableDescription + Environment.NewLine);
+                    //contentBox.AppendText(table.TableStyleName + Environment.NewLine);
+                    //contentBox.AppendText(table.TableFormat.ToString() + Environment.NewLine);
+                    //contentBox.AppendText("--------------" + Environment.NewLine);
+
+                    if (table.TableStyleName.Contains("Grid") || table.TableFormat.Borders.NoBorder.ToString() == "False")
+                    {
+                        Image image = ConvertTableToImage(table);
+                        para.AppendPicture(image);
+                        section.Body.ChildObjects.Insert(index, para);
+                        section.Body.ChildObjects.Remove(table);
+                        i--;
+                    }
+                }
+            }
+           // LoadFilePath = @"C:\Users\C K Bhushan\Desktop\NCERT Books\Tools\Issues\tableout.docx";
+            document.SaveToFile(@"C:\Users\C K Bhushan\Desktop\NCERT Books\Tools\Issues\tableout.docx");
+        }
+
+
+        private static Image ConvertTableToImage(Table obj)
+        {
+            Document doc = new Document();
             Section section = doc.AddSection();
 
-            //Add a paragrah
-            Paragraph paragraph = section.AddParagraph();
-
-            //Append text to the paragraph
-            paragraph.AppendText("This article shows you how to mannually add Spire.Doc as dependency in a .NET Core application.");
-
-            //Save to file
-            doc.SaveToFile(@"D:\Output.docx", FileFormat.Docx2013);
-            Console.WriteLine("Word creatino done.");
-            Console.ReadLine();
+            section.Body.ChildObjects.Add(obj.Clone());
+            Image image = doc.SaveToImages(0, ImageType.Bitmap);
             doc.Close();
+            return CutImageWhitePart(image as Bitmap, 1);
         }
+
+
+        public static Image CutImageWhitePart(Bitmap bmp, int WhiteBarRate)
+        {
+            int top = 0, left = 0;
+            int right = bmp.Width, bottom = bmp.Height;
+            Color white = Color.White;
+
+            for (int i = 0; i < bmp.Height; i++)
+            {
+                bool find = false;
+                for (int j = 0; j < bmp.Width; j++)
+                {
+                    Color c = bmp.GetPixel(j, i);
+                    if (IsWhite(c))
+                    {
+                        top = i;
+                        find = true;
+                        break;
+                    }
+                }
+                if (find) break;
+            }
+
+            for (int i = 0; i < bmp.Width; i++)
+            {
+                bool find = false;
+                for (int j = top; j < bmp.Height; j++)
+                {
+                    Color c = bmp.GetPixel(i, j);
+                    if (IsWhite(c))
+                    {
+                        left = i;
+                        find = true;
+                        break;
+                    }
+                }
+                if (find) break; ;
+            }
+
+            for (int i = bmp.Height - 1; i >= 0; i--)
+            {
+                bool find = false;
+                for (int j = left; j < bmp.Width; j++)
+                {
+                    Color c = bmp.GetPixel(j, i);
+                    if (IsWhite(c))
+                    {
+                        bottom = i;
+                        find = true;
+                        break;
+                    }
+                }
+                if (find) break;
+            }
+
+            for (int i = bmp.Width - 1; i >= 0; i--)
+            {
+                bool find = false;
+                for (int j = 0; j < bottom; j++)
+                {
+                    Color c = bmp.GetPixel(i, j);
+                    if (IsWhite(c))
+                    {
+                        right = i;
+                        find = true;
+                        break;
+                    }
+                }
+                if (find) break;
+            }
+            int iWidth = right - left;
+            int iHeight = bottom - left;
+            int blockWidth = Convert.ToInt32(iWidth * WhiteBarRate / 100);
+            bmp = Cut(bmp, left - blockWidth, top - blockWidth, right - left + 2 * blockWidth, bottom - top + 2 * blockWidth);
+
+            return bmp;
+        }
+        public static Bitmap Cut(Bitmap b, int StartX, int StartY, int iWidth, int iHeight)
+        {
+            if (b == null)
+            {
+                return null;
+            }
+            int w = b.Width;
+            int h = b.Height;
+            if (StartX >= w || StartY >= h)
+            {
+                return null;
+            }
+            if (StartX + iWidth > w)
+            {
+                iWidth = w - StartX;
+            }
+            if (StartY + iHeight > h)
+            {
+                iHeight = h - StartY;
+            }
+            try
+            {
+                Bitmap bmpOut = new Bitmap(iWidth, iHeight, PixelFormat.Format24bppRgb);
+                Graphics g = Graphics.FromImage(bmpOut);
+                g.DrawImage(b, new Rectangle(0, 0, iWidth, iHeight), new Rectangle(StartX, StartY, iWidth, iHeight), GraphicsUnit.Pixel);
+                g.Dispose();
+                return bmpOut;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public static bool IsWhite(Color c)
+        {
+            if (c.R < 245 || c.G < 245 || c.B < 245)
+                return true;
+            else return false;
+        }
+        //public void CreateDoc()
+        //{
+        //    //Create a document object
+        //    Document doc = new Document();
+
+        //    //Add a section
+        //    Section section = doc.AddSection();
+
+        //    //Add a paragrah
+        //    Paragraph paragraph = section.AddParagraph();
+
+        //    //Append text to the paragraph
+        //    paragraph.AppendText("This article shows you how to mannually add Spire.Doc as dependency in a .NET Core application.");
+
+        //    //Save to file
+        //    doc.SaveToFile(@"D:\Output.docx", FileFormat.Docx2013);
+        //    Console.WriteLine("Word creatino done.");
+        //    Console.ReadLine();
+        //    doc.Close();
+        //}
 
 
 
